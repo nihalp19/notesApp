@@ -50,7 +50,7 @@ function Layout() {
 
     return (
         <div className="min-h-screen w-full relative">
-            <div className="fixed w-full">
+            <div className="fixed w-full z-20">
                 <Navbar value={{ userData, Note,  filter, setFilterState, search, setSearch }} />
                 <Notes value={{ Note, setNotes, FormOpen, setFormOpen, update, setUpdate, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, id, setId, filter, setFilterState, search, setSearch}} />
             </div>
