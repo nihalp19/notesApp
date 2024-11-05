@@ -3,7 +3,7 @@ import { Cross1Icon } from '@radix-ui/react-icons'
 import { sendNoteData, UpdateNoteData, fetchData } from '../api/NoteApi'
 
 function NoteForm({ value }) {
-    const { FormOpen, setFormOpen, Note, setNotes, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, update, setUpdate, id, setId } = value
+    const { FormOpen, setFormOpen, Note, setNotes, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, update, setUpdate, id, setId, filter, setFilterState, search, setSearch } = value
 
     const [title, setTitle] = useState(title1)
     const [content, setContent] = useState(content1)

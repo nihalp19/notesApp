@@ -6,7 +6,7 @@ import { fetchData } from '../api/NoteApi'
 
 function Notes({ value }) {
 
-    const { Note, setNotes, FormOpen, setFormOpen, update, setUpdate, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, id, setId } = value
+    const { Note, setNotes, FormOpen, setFormOpen, update, setUpdate, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, id, setId, searchIsON, setSearchIsON, filter, setFilterState, search, setSearch } = value
 
 
     useEffect(() => {
@@ -132,27 +132,53 @@ function Notes({ value }) {
 
     return (
         <div className='flex gap-4 w-full p-4'>
-            {Note && Note.length > 0 ? (
-                Note.map((n, i) => (
+            {filter && filter.length > 0 ? (
+                filter.map((f, i) => (
                     <div key={i} className='bg-slate-300 px-4 py-2 rounded-md'>
                         <div className='flex justify-end'>
-                            {n.isPinned ? <DrawingPinIcon className='text-blue-500' onClick={() => handleUnPinned(n._id)} /> : <DrawingPinIcon onClick={() => handlePinned(n._id)} />}
+                            {f.isPinned ? (
+                                <DrawingPinIcon className='text-blue-500' onClick={() => handleUnPinned(f._id)} />
+                            ) : (
+                                <DrawingPinIcon onClick={() => handlePinned(f._id)} />
+                            )}
                         </div>
 
-                        <p className='text-2xl'>{n.title}</p>
-                        <p className='text-lg'>{n.content.slice(0, 25)}</p>
-                        <p>#{n.tags.join(" #")}</p>
+                        <p className='text-2xl'>{f.title}</p>
+                        <p className='text-lg'>{f.content.slice(0, 25)}</p>
+                        <p>#{f.tags.join(" #")}</p>
                         <div className='flex justify-end gap-2 mt-2'>
-                            <Pencil1Icon onClick={() => handleUpdate(n._id, n.title, n.content, n.tags)} />
-                            <TrashIcon onClick={() => handleDelete(n._id)} />
+                            <Pencil1Icon onClick={() => handleUpdate(f._id, f.title, f.content, f.tags)} />
+                            <TrashIcon onClick={() => handleDelete(f._id)} />
                         </div>
                     </div>
                 ))
             ) : (
-                <p>No notes available.</p>
+                Note && Note.length > 0 ? (
+                    Note.map((n, i) => (
+                        <div key={i} className='bg-slate-300 px-4 py-2 rounded-md'>
+                            <div className='flex justify-end'>
+                                {n.isPinned ? (
+                                    <DrawingPinIcon className='text-blue-500' onClick={() => handleUnPinned(n._id)} />
+                                ) : (
+                                    <DrawingPinIcon onClick={() => handlePinned(n._id)} />
+                                )}
+                            </div>
+
+                            <p className='text-2xl'>{n.title}</p>
+                            <p className='text-lg'>{n.content.slice(0, 25)}</p>
+                            <p>#{n.tags.join(" #")}</p>
+                            <div className='flex justify-end gap-2 mt-2'>
+                                <Pencil1Icon onClick={() => handleUpdate(n._id, n.title, n.content, n.tags)} />
+                                <TrashIcon onClick={() => handleDelete(n._id)} />
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p>No notes available.</p>
+                )
             )}
         </div>
-    )
+    );
 }
 
 export default Notes

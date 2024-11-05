@@ -104,7 +104,7 @@ async function fetchNote(req, res) {
         }
 
         const note = await NOTE.find({ createdBy: userId })
-            .sort({ isPinned: -1 }) // Sort by isPinned first
+            .sort({ isPinned: -1 }) 
             .exec();
 
         if (!note) {
