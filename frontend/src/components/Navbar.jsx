@@ -9,19 +9,24 @@ function Navbar({ value }) {
 
     useEffect(() => {
         const searchNote = () => {
-            const trimmedSearch = search.trim().toLowerCase();
+            if (!search == "") {
+                const trimmedSearch = search.trim().toLowerCase();
+                console.log("search", search);
 
-            const filterState = Note.filter((n) => {
-                return (
-                    n.title.trim().toLowerCase().includes(trimmedSearch) ||
-                    n.content.toLowerCase().includes(trimmedSearch) ||
-                    n.tags.some(tag => tag.toLowerCase().includes(trimmedSearch))
-                );
-            });
+                const filterState = Note.filter((n) => {
+                    return (
+                        n.title.trim().toLowerCase().includes(trimmedSearch) ||
+                        n.content.toLowerCase().includes(trimmedSearch) ||
+                        n.tags.some(tag => tag.toLowerCase().includes(trimmedSearch))
+                    );
+                });
 
-            console.log("Filtered notes:", filterState);
+                console.log("Filtered notes:", filterState);
 
-            setFilterState(filterState);
+                setFilterState(filterState);
+            }else{
+                return
+            }
         };
         searchNote()
     }, [Note])
@@ -29,7 +34,6 @@ function Navbar({ value }) {
 
     const searchNote = (e) => {
         e.preventDefault();
-
         const trimmedSearch = search.trim().toLowerCase();
 
         const filterState = Note.filter((n) => {
@@ -41,12 +45,15 @@ function Navbar({ value }) {
         });
 
         console.log("Filtered notes:", filterState);
-
         setFilterState(filterState);
     };
 
-    const returnHome = () => {
+    const returnHome = (e) => {
+        e.preventDefault()
         setFilterState([])
+        setSearch("")
+        console.log("filter :", filter);
+
     }
 
     const handleLogout = async () => {

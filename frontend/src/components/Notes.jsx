@@ -131,7 +131,7 @@ function Notes({ value }) {
     }
 
     return (
-        <div className='flex gap-4 w-full p-4'>
+        <div className='flex flex-wrap gap-4 w-full p-4'>
             {filter && filter.length > 0 ? (
                 filter.map((f, i) => (
                     <div key={i} className='bg-slate-300 px-4 py-2 rounded-md'>
@@ -144,7 +144,7 @@ function Notes({ value }) {
                         </div>
 
                         <p className='text-2xl'>{f.title}</p>
-                        <p className='text-lg'>{f.content.slice(0, 25)}</p>
+                        <p className='text-lg'>{f.content.slice(0, 20)}</p>
                         <p>#{f.tags.join(" #")}</p>
                         <div className='flex justify-end gap-2 mt-2'>
                             <Pencil1Icon onClick={() => handleUpdate(f._id, f.title, f.content, f.tags)} />
@@ -165,7 +165,7 @@ function Notes({ value }) {
                             </div>
 
                             <p className='text-2xl'>{n.title}</p>
-                            <p className='text-lg'>{n.content.slice(0, 25)}</p>
+                            <p className='text-lg'>{n.content.slice(0, 20)}</p>
                             <p>#{n.tags.join(" #")}</p>
                             <div className='flex justify-end gap-2 mt-2'>
                                 <Pencil1Icon onClick={() => handleUpdate(n._id, n.title, n.content, n.tags)} />

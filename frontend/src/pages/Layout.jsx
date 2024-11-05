@@ -57,7 +57,8 @@ function Layout() {
             {FormOpen && <div className="absolute z-10 w-full min-h-screen  flex justify-center items-center bg-black bg-opacity-30 backdrop-blur-sm transition-opacity duration-300 ease-in-out">
                 <NoteForm value={{ FormOpen, setFormOpen, Note, setNotes, update, setUpdate, title1, tags1, tag1, content1, setContent1, setTag1, setTags1, setTitle1, id, setId, filter, setFilterState,search, setSearch}} />
             </div>}
-            <button className="absolute flex justify-center items-center bg-black text-2xl text-white px-4 py-2 rounded-lg bottom-4 right-4" onClick={() => setFormOpen(true)}>+</button>
+            {filter.length > 0 ? "" : <button className="absolute flex justify-center items-center bg-black text-2xl text-white px-4 py-2 rounded-lg bottom-4 right-4" onClick={() => setFormOpen(true)}>+</button>}
+            
         </div>
     )
 }
